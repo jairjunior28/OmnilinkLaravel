@@ -11,16 +11,16 @@
             {!! csrf_field() !!}
             <div class="form-group">
                 <label>Pesquisar: Data Inicial: </label>
-                <input type="Date" name="dataini">
+                <input type="Date" name="dataini" value="">
 
                 <label>Data Final: </label>
-                <input type="Date" name="datafim">
+                <input type="Date" name="datafim" >
             </div>
             <div class="form-group">
                 <select name="tipofiltro">
-                    <option value="0">Série</option>
-                    <option value="1">Placa</option>
-                    <option value="2">Status</option>
+                    <option value="1">Série</option>
+                    <option value="2">Placa</option>
+                    <option value="3">Status</option>
 
                 </select>
 

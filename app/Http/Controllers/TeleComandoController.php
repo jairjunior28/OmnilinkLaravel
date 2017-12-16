@@ -41,9 +41,7 @@ class TeleComandoController extends Controller
                 case 2:
                     $campopesquisa='Veiculo';
                     break;
-                case 3:
-                    $campopesquisa='StatusEnvio';
-                    break;
+
                 default:
                     $campopesquisa=NULL;
                     break;
@@ -55,9 +53,10 @@ class TeleComandoController extends Controller
             ->join('tMensagem','vwTeleComando.CodMsg','=','tMensagem.CodMsg','inner')
             ->join('tOpRemota','vwTeleComando.IDSequencia','=','tOpRemota.IDSequencia','inner')
             ->join('tCfgTransicao','vwTeleComando.IDSequencia','=','tCfgTransicao.IDSequencia','left outer')//caso haja registro na tabela de transição
+
             ->whereDate('DataHoraEm','>=',date($format,strtotime($request->dataini)))
             ->whereDate('DataHoraEm','<=',date($format,strtotime($request->datafim)))
-
+            ->where($campopesquisa,'like','%'.$request->filtro.'%')
             ->orderBy('DataHoraEm','desc')
             ->take(100)
             ->get();
